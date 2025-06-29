@@ -1,0 +1,5 @@
+package com.oracle.assessment.backend.service;
+
+public class CoinCalculator {
+
+}

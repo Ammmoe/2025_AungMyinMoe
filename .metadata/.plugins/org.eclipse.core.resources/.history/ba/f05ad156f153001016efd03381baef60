@@ -1,0 +1,5 @@
+package com.oracle.assessment.backend.api;
+
+public class CoinResponse {
+
+}

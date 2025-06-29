@@ -1,0 +1,6 @@
+com/oracle/assessment/backend/resources/CoinResource.class
+com/oracle/assessment/backend/api/CoinRequest.class
+com/oracle/assessment/backend/BackendConfiguration.class
+com/oracle/assessment/backend/BackendApplication.class
+com/oracle/assessment/backend/service/CoinCalculatorService.class
+com/oracle/assessment/backend/api/CoinResponse.class

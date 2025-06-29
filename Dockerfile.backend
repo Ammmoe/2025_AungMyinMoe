@@ -1,0 +1,20 @@
+#############################################
+# Stage 1: Build with Maven
+#############################################
+FROM maven:3.9.10-eclipse-temurin-17 AS build
+WORKDIR /app
+COPY backend/pom.xml .
+RUN mvn dependency:go-offline -B
+COPY backend/src ./src
+COPY backend/config.yml .
+RUN mvn package -DskipTests -B
+
+#############################################
+# Stage 2: Runtime image
+#############################################
+FROM eclipse-temurin:17-jre-jammy
+WORKDIR /opt/app
+COPY --from=build /app/target/backend-fat.jar app.jar
+COPY backend/config.yml .
+EXPOSE 8080
+CMD ["java", "-jar", "app.jar", "server", "config.yml"]

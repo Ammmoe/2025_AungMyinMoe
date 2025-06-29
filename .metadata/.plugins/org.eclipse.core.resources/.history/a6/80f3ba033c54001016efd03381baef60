@@ -1,0 +1,16 @@
+package com.oracle.assessment.backend;
+
+import io.dropwizard.core.Configuration;
+
+public class BackendConfiguration extends Configuration {
+    // TODO: implement service configuration
+	private String allowedOrigin = "http://localhost:3000";
+
+	public String getAllowedOrigin() {
+	    return allowedOrigin;
+	}
+
+	public void setAllowedOrigin(String allowedOrigin) {
+	    this.allowedOrigin = allowedOrigin;
+	}
+}

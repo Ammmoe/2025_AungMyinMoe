@@ -1,0 +1,34 @@
+package com.oracle.assessment.backend;
+
+import io.dropwizard.core.Application;
+import io.dropwizard.core.setup.Bootstrap;
+import io.dropwizard.core.setup.Environment;
+
+import com.oracle.assessment.backend.resources.CoinResource;
+import com.oracle.assessment.backend.service.CoinCalculatorService;
+
+public class BackendApplication extends Application<BackendConfiguration> {
+
+    public static void main(final String[] args) throws Exception {
+        new BackendApplication().run(args);
+    }
+
+    @Override
+    public String getName() {
+        return "backend";
+    }
+
+    @Override
+    public void initialize(final Bootstrap<BackendConfiguration> bootstrap) {
+        // TODO: application initialization
+    }
+
+    @Override
+    public void run(final BackendConfiguration configuration,
+                    final Environment environment) {
+        // TODO: implement application
+    	CoinCalculatorService service = new CoinCalculatorService();
+    	environment.jersey().register(new CoinResource(service));
+    }
+
+}

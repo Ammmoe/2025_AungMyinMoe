@@ -1,0 +1,19 @@
+package com.oracle.assessment.backend.service;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+public class CoinCalculatorServiceTest {
+	
+	private final CoinCalculatorService service = new CoinCalculatorService();
+	
+	// Standard test cases
+	@Test
+	public void testStandard_Case1() {
+		/* It should return the correct list of minimum coins for 7.03 with given denominations */
+		List<Double> coins = service.calculateMinCoins(7.03, List.of(0.01, 0.5, 1.0, 5.0, 10.0));
+		assertEquals(List.of(0.01, 0.01, 0.01, 1.0, 1.0, 5.0), coins);
+	}
+
+}
