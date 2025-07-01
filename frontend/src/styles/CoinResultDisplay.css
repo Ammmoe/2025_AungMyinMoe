@@ -1,0 +1,44 @@
+
+.result-container {
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.result-display-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.coin-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.note-image {
+    width: 140px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.bold-text {
+    font-weight: bold;
+}

@@ -1,0 +1,57 @@
+
+.coin-selector-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.coin-grid, .note-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.coin-item, .note-item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: none;
+}
+
+.coin-item {
+    border-radius: 8px;
+}
+
+.coin-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background: none;
+}
+
+.note-item img {
+    width: 140px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.coin-item.selected, .note-item.selected {
+    box-shadow: 0 0 10px rgba(0, 128, 0, 0.7);
+    transform: scale(1.05);
+}
+
+.tick-overlay {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0, 128, 0, 0.8);
+    color: white;
+    padding: 2px 5px;
+    border-radius: 50%;
+    font-size: 14px;
+}
