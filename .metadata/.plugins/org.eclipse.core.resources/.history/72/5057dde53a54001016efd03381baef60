@@ -1,7 +1,0 @@
-package com.oracle.assessment.backend;
-
-import io.dropwizard.core.Configuration;
-
-public class BackendConfiguration extends Configuration {
-    // TODO: implement service configuration
-}

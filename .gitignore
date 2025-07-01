@@ -1,0 +1,12 @@
+backend/dependency-reduced-pom.xml
+backend/target/
+.metadata/ 
+.project 
+.classpath 
+.settings/ 
+.log 
+.DS_Store 
+.class 
+.jar
+.war
+.ear
