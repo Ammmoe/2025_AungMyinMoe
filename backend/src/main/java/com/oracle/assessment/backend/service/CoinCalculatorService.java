@@ -1,9 +1,12 @@
 package com.oracle.assessment.backend.service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+
 
 public class CoinCalculatorService {
 	
@@ -17,28 +20,43 @@ public class CoinCalculatorService {
 
 		validateArguments(targetAmount, coinDenominations);
 		
-		// Sort coin denominations in descending order for greedy approach
-		List<Double> sortedDenominations = new ArrayList<>(coinDenominations);
-		Collections.sort(sortedDenominations, Collections.reverseOrder());
+		long targetInCents = Math.round(targetAmount * 100);
+		List<Long> coinsInCents = coinDenominations.stream()
+				.map(coin -> Math.round(coin * 100))
+				.collect(Collectors.toList());
 		
-		List<Double> result = new ArrayList<>();
-		long remainingAmount = Math.round(targetAmount * 100); // Work in cents to avoid floating point issues
+		long[] dp = new long[(int)targetInCents + 1];
+		long[] coinTrack = new long[(int)targetInCents + 1];
 		
-		// Add the biggest coin to result list for a given remaining amount to ensure minimum number of coins
-		for (double coin : sortedDenominations) {
-			long coinInCents = Math.round(coin * 100);
-			while (remainingAmount >= coinInCents) {
-				result.add(coin);
-				remainingAmount -= coinInCents;
+		Arrays.fill(dp, Long.MAX_VALUE);
+		Arrays.fill(coinTrack, -1);
+		
+		dp[0] = 0;
+		for (int i = 0; i <= targetInCents; i++) {
+			for (long coin : coinsInCents) {
+				if (coin <= i && dp[(int)(i - coin)] != Long.MAX_VALUE) {
+					if (dp[i] > dp[(int)(i - coin)] + 1) {
+						dp[i] = dp[(int)(i - coin)] + 1;
+						coinTrack[i] = coin;
+					}
+				}
 			}
 		}
 		
-		// Throw an exception if remaining amount is still there after looping
-		if (remainingAmount > 0) {
+		if (dp[(int)targetInCents] == Long.MAX_VALUE) {
 			throw new IllegalArgumentException("Target amount cannot be made with given coin denominations");
 		}
 		
-		// Sort the result in ascending order
+		// Reconstruct the list of coins used
+		List<Double> result = new ArrayList<>();
+		long remaining = targetInCents;
+		
+		while (remaining > 0) {
+			long usedCoin = coinTrack[(int)remaining];
+			result.add(usedCoin / 100.0);
+			remaining -= usedCoin;
+		}
+		
 		Collections.sort(result);
 		return result;
 	}

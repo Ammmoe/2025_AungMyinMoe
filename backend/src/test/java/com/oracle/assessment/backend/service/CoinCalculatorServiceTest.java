@@ -95,6 +95,13 @@ public class CoinCalculatorServiceTest {
         assertEquals(List.of(50.0), coins);
     }
     
+    @Test
+    public void testEdge_GreedyMethodWeakness() {
+    	// It should return a list of only smaller coins as the target amount is only solvable with smaller coins
+    	List<Double> coins = service.calculateMinCoins(0.8, List.of(0.2, 0.5));
+    	assertEquals(List.of(0.2, 0.2, 0.2, 0.2), coins);
+    }
+    
     /* ------- DEFENSIVE TESTS ------- */
     @Test
     public void testDefensive_TargetAmountWithMoreThanTwoDecimals() {
